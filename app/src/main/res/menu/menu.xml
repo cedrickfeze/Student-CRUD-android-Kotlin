@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Delete All"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="always"
+        android:id="@+id/delete_all"/>
+    <item
+        android:title="Student"
+        android:id="@+id/student" />
+
+    <item
+        android:title="Department"
+        android:id="@+id/department" />
+
+    <item
+        android:title="Specialty"
+        android:id="@+id/specialty" />
+
+    <item
+        android:title="Level"
+        android:id="@+id/level" />
+
+    <item
+        android:title="Enrollement"
+        android:id="@+id/enrollement" />
+</menu>

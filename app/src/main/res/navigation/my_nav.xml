@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/listFragment">
+
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="cm.sigeris.roomdatabase.fragments.list.ListFragment"
+        android:label="List Users"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_listLevel"
+            app:destination="@id/listLevel" />
+        <action
+            android:id="@+id/action_listFragment_to_listDepartment"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listFragment_to_listDepartment2"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listFragment_to_listDepartment3"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listFragment_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="cm.sigeris.roomdatabase.fragments.add.AddFragment"
+        android:label="Add Users"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="cm.sigeris.roomdatabase.fragments.update.UpdateFragment"
+        android:label="Update User"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="cm.sigeris.roomdatabase.model.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/listLevel"
+        android:name="cm.sigeris.roomdatabase.fragments.level.ListLevel"
+        android:label="fragment_list_level"
+        tools:layout="@layout/fragment_list_level" >
+        <action
+            android:id="@+id/action_listLevel_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listLevel_to_addLevel"
+            app:destination="@id/addLevel" />
+        <action
+            android:id="@+id/action_listLevel_to_updateLevel"
+            app:destination="@id/updateLevel" />
+        <action
+            android:id="@+id/action_listLevel_to_listDepartment"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listLevel_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listLevel_to_listSpecialty2"
+            app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listLevel_to_listSpecialty3"
+            app:destination="@id/listSpecialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/addLevel"
+        android:name="cm.sigeris.roomdatabase.fragments.level.AddLevel"
+        android:label="fragment_add_level"
+        tools:layout="@layout/fragment_add_level" >
+        <action
+            android:id="@+id/action_addLevel_to_listLevel"
+            app:destination="@id/listLevel" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateLevel"
+        android:name="cm.sigeris.roomdatabase.fragments.level.UpdateLevel"
+        android:label="fragment_update_level"
+        tools:layout="@layout/fragment_update_level" >
+        <argument
+            android:name="currentLevel"
+            app:argType="cm.sigeris.roomdatabase.model.Level" />
+        <action
+            android:id="@+id/action_updateLevel_to_listLevel"
+            app:destination="@id/listLevel" />
+    </fragment>
+    <fragment
+        android:id="@+id/listDepartment"
+        android:name="cm.sigeris.roomdatabase.fragments.department.ListDepartment"
+        android:label="fragment_list_department"
+        tools:layout="@layout/fragment_list_department" >
+        <action
+            android:id="@+id/action_listDepartment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listDepartment_to_addDepartment"
+            app:destination="@id/addDepartment" />
+        <action
+            android:id="@+id/action_listDepartment_to_updateDepartment"
+            app:destination="@id/updateDepartment" />
+        <action
+            android:id="@+id/action_listDepartment_to_listLevel"
+            app:destination="@id/listLevel" />
+        <action
+            android:id="@+id/action_listDepartment_to_listFragment2"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listDepartment_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/addDepartment"
+        android:name="cm.sigeris.roomdatabase.fragments.department.AddDepartment"
+        android:label="fragment_add_department"
+        tools:layout="@layout/fragment_add_department" >
+        <action
+            android:id="@+id/action_addDepartment_to_listDepartment"
+            app:destination="@id/listDepartment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateDepartment"
+        android:name="cm.sigeris.roomdatabase.fragments.department.UpdateDepartment"
+        android:label="fragment_update_department"
+        tools:layout="@layout/fragment_update_department" >
+        <action
+            android:id="@+id/action_updateDepartment_to_listDepartment"
+            app:destination="@id/listDepartment" />
+        <argument
+            android:name="currentDepartment"
+            app:argType="cm.sigeris.roomdatabase.model.Department" />
+    </fragment>
+    <fragment
+        android:id="@+id/listSpecialty"
+        android:name="cm.sigeris.roomdatabase.fragments.specialty.listSpecialty"
+        android:label="fragment_list_specialty"
+        tools:layout="@layout/fragment_list_specialty" >
+        <action
+            android:id="@+id/action_listSpecialty_to_listLevel"
+            app:destination="@id/listLevel" />
+        <action
+            android:id="@+id/action_listSpecialty_to_listDepartment"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listSpecialty_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listSpecialty_to_listLevel2"
+            app:destination="@id/listLevel" />
+        <action
+            android:id="@+id/action_listSpecialty_to_addSpecialty"
+            app:destination="@id/addSpecialty" />
+        <action
+            android:id="@+id/action_listSpecialty_to_updateSpecialty"
+            app:destination="@id/updateSpecialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSpecialty"
+        android:name="cm.sigeris.roomdatabase.fragments.specialty.addSpecialty"
+        android:label="fragment_add_specialty"
+        tools:layout="@layout/fragment_add_specialty" >
+        <action
+            android:id="@+id/action_addSpecialty_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateSpecialty"
+        android:name="cm.sigeris.roomdatabase.fragments.specialty.updateSpecialty"
+        android:label="fragment_update_specialty"
+        tools:layout="@layout/fragment_update_specialty" >
+        <action
+            android:id="@+id/action_updateSpecialty_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+    </fragment>
+</navigation>
