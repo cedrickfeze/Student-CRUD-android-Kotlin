@@ -16,6 +16,33 @@
         android:textStyle="bold"
         android:textColor="@color/teal_700"
         android:text="Update Specialty" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:weightSum="4"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:text="Dept:" />
+
+        <AutoCompleteTextView
+            android:id="@+id/UpdateautoCompleteDepartment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:hint="Select Department"
+            />
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="32dp"
@@ -63,30 +90,7 @@
             android:hint="Enter Specialty Description"
             android:inputType="textPersonName" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:weightSum="4"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:text="Age:" />
 
-        <AutoCompleteTextView
-            android:id="@+id/UpdateautoCompleteDepartment"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:hint="Select Department"
-            />
-    </LinearLayout>
     <Button
     android:id="@+id/btnUpdateSpecialty"
     android:layout_marginTop="32dp"

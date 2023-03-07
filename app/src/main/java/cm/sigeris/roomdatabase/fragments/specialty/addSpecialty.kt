@@ -6,34 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cm.sigeris.roomdatabase.R
+import cm.sigeris.roomdatabase.fragments.department.DepartmentAutoCompleteAdapter
+import cm.sigeris.roomdatabase.model.Department
 import cm.sigeris.roomdatabase.model.Specialty
-import cm.sigeris.roomdatabase.model.User
+import cm.sigeris.roomdatabase.viewmodel.DepartmentViewModel
 import cm.sigeris.roomdatabase.viewmodel.SpecialtyViewModel
-import cm.sigeris.roomdatabase.viewmodel.UserViewModel
-import kotlinx.android.synthetic.main.fragment_add.*
-import kotlinx.android.synthetic.main.fragment_add.view.*
 import kotlinx.android.synthetic.main.fragment_add_specialty.*
 import kotlinx.android.synthetic.main.fragment_add_specialty.view.*
 
 
 class addSpecialty : Fragment() {
+    private lateinit var mDepartmentViewModel: DepartmentViewModel
     private lateinit var mSpecialtyViewModel: SpecialtyViewModel
-
-
+    var depID: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_specialty, container, false)
+//        mDepartmentViewModel = ViewModelProvider(this).get(DepartmentViewModel::class.java)
         mSpecialtyViewModel = ViewModelProvider(this).get(SpecialtyViewModel::class.java)
         view.btnInsertSpecialty.setOnClickListener {
             insertDataToDataBase()
@@ -41,12 +40,14 @@ class addSpecialty : Fragment() {
         return view
     }
 
+
     private fun insertDataToDataBase() {
-        val NameSpecialty = edtNameSpecialty.text.toString()
-        val DescSpecialty = edtDescSpecialty.text.toString()
-        val DepartmentSpe = autoCompleteDepartment.text.toString()
-        if(formValidation(NameSpecialty, DescSpecialty, DepartmentSpe)){
-            val newSpecialty = Specialty(0, NameSpecialty.lowercase(), DescSpecialty.lowercase(), DepartmentSpe.toInt())
+        val NameSpecialty = edtNameSpecialty.text.toString().trim().lowercase()
+        val DescSpecialty = edtDescSpecialty.text.toString().trim().lowercase()
+        val NameDepartment = autoCompleteDepartment.text.toString().trim().lowercase()
+        if(formValidation(NameSpecialty, DescSpecialty, NameDepartment)){
+            val newSpecialty = Specialty(0, NameSpecialty, DescSpecialty, depID)
+//            System.out.println(" SPECIALTY = $newSpecialty")
             mSpecialtyViewModel.addSpecialty(newSpecialty)
             Toast.makeText(requireContext(), "successfully inserted", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addSpecialty_to_listSpecialty)
@@ -55,9 +56,29 @@ class addSpecialty : Fragment() {
         }
     }
 
-    private fun formValidation(NameSpecialty: String, DescSpecialty: String, DepartmentSpe: String): Boolean {
+    override fun onResume() {
+        super.onResume()
+        mDepartmentViewModel=ViewModelProvider(this).get(DepartmentViewModel::class.java)
+        mDepartmentViewModel.readAllData.observe(viewLifecycleOwner, Observer { dept ->
+            //adapter.setData(dept)
+            val adapter = DepartmentAutoCompleteAdapter (requireContext(),android.R.layout.simple_list_item_1, dept)
+            autoCompleteDepartment.threshold = 1
+            autoCompleteDepartment.setAdapter(adapter)
+//            autoCompleteDepartment.setTextColor(color.RED)
+            autoCompleteDepartment.setOnItemClickListener { parent, _, position, id ->
+                val selectedDept = parent.adapter.getItem(position) as Department
+                autoCompleteDepartment.setText(selectedDept.namedepartment.uppercase())
+                depID = selectedDept.iddepartment
+//                Toast.makeText(requireContext(), "ID = $depID and department ${selectedDept.namedepartment.uppercase()}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+
+
+    private fun formValidation(NameSpecialty: String, DescSpecialty: String, NameDepartment:String): Boolean {
         if(NameSpecialty.isEmpty()){
-            edtNameSpecialty.error = "enter a valid Specialty name"
+            edtNameSpecialty.error = "enter a valid Specialty "
             edtNameSpecialty.requestFocus()
             return false
         }
@@ -66,8 +87,9 @@ class addSpecialty : Fragment() {
             edtDescSpecialty.requestFocus()
             return false
         }
-        if(DepartmentSpe.toString().length == 0){
-            autoCompleteDepartment.error = "Select a department"
+
+        if(NameDepartment.isEmpty()){
+            autoCompleteDepartment.error = "Please search a  Department"
             autoCompleteDepartment.requestFocus()
             return false
         }

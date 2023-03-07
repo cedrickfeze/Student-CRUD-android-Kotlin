@@ -5,56 +5,79 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import cm.sigeris.roomdatabase.R
+import cm.sigeris.roomdatabase.model.Specialty
+import cm.sigeris.roomdatabase.viewmodel.SpecialtyViewModel
+import kotlinx.android.synthetic.main.fragment_add_specialty.*
+import kotlinx.android.synthetic.main.fragment_add_specialty.view.*
+import kotlinx.android.synthetic.main.fragment_update_specialty.*
+import kotlinx.android.synthetic.main.fragment_update_specialty.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [updateSpecialty.newInstance] factory method to
- * create an instance of this fragment.
- */
 class updateSpecialty : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var mSpecialtyViewModel: SpecialtyViewModel
+    private val args by navArgs<updateSpecialtyArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update_specialty, container, false)
+        // afficher les elements avant de faire le MAj
+        val view = inflater.inflate(R.layout.fragment_update_specialty, container, false)
+        mSpecialtyViewModel = ViewModelProvider(this).get(SpecialtyViewModel::class.java)
+//        System.out.println(args.currentSpecialty)
+//        view.edtUpdateNameSpecialty.setText("test")
+        view.edtUpdateNameSpecialty.setText(args.currentSpecialty.nameSpecialty)
+        view.edtUpdateDescSpecialty.setText(args.currentSpecialty.descSpecialty)
+        view.UpdateautoCompleteDepartment.setText(args.currentSpecialty.id_department.toString())
+        view.btnUpdateSpecialty.setOnClickListener {
+            updateOneSpecialty()
+        }
+        return view
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment updateSpecialty.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            updateSpecialty().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateOneSpecialty() {
+        val NameSpe = edtUpdateNameSpecialty.text.toString().trim().lowercase()
+        val DescSpe = edtUpdateDescSpecialty.text.toString().trim().lowercase()
+        val Depart = UpdateautoCompleteDepartment.text.toString().trim().lowercase()
+
+        if (formValidation(NameSpe, DescSpe, Depart)) {
+            val newSpe = Specialty(args.currentSpecialty.idSpecialty, NameSpe, DescSpe, Depart.toInt())
+            mSpecialtyViewModel.updateSpecialty(newSpe)
+            Toast.makeText(requireContext(), "Successfully Updated", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_updateSpecialty_to_listSpecialty)
+        } else {
+            Toast.makeText(requireContext(), "Please fill all fields", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun formValidation(DescSpe: String, Depart: String, NameSpe: String): Boolean {
+        if (NameSpe.isEmpty()) {
+            edtNameSpecialty.error = "enter a valid Specialty "
+            edtNameSpecialty.requestFocus()
+            return false
+        }
+        if (DescSpe.isEmpty()) {
+            edtDescSpecialty.error = "enter a valid Specialty description"
+            edtDescSpecialty.requestFocus()
+            return false
+        }
+
+        if (Depart.isEmpty()) {
+            autoCompleteDepartment.error = "Please search a  Department"
+            autoCompleteDepartment.requestFocus()
+            return false
+        }
+        return true
     }
 }
+

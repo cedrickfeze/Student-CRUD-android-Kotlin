@@ -4,12 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import cm.sigeris.roomdatabase.model.Department
-import cm.sigeris.roomdatabase.model.Level
-import cm.sigeris.roomdatabase.model.Specialty
-import cm.sigeris.roomdatabase.model.User
+import cm.sigeris.roomdatabase.model.*
 
-@Database(entities = [User::class, Level::class, Department::class, Specialty::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Level::class, Department::class, Specialty::class, Enrollement::class], version = 1, exportSchema = false)
 abstract class UserDatabase: RoomDatabase() {
 
     abstract fun userDao(): UserDao
@@ -19,6 +16,8 @@ abstract class UserDatabase: RoomDatabase() {
     abstract fun departmentDao(): DepartmentDAO
 
     abstract fun specialtyDao(): SpecialtyDao
+
+    abstract fun enrollementDao(): EnrollementDao
 
 
 

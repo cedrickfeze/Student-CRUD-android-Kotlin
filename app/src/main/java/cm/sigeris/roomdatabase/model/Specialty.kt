@@ -15,9 +15,9 @@ import kotlinx.android.parcel.Parcelize
         parentColumns = ["iddepartment"]
     )])
     data class Specialty(
-    @PrimaryKey(autoGenerate = true)
-    val idSpecialty: Int,
-    val nameSpecialty: String,
-    val descSpecialty: String,
-    val id_department: Int
+        @PrimaryKey(autoGenerate = true)
+        val idSpecialty: Int,
+        val nameSpecialty: String,
+        val descSpecialty: String,
+        val id_department: Int
     ): Parcelable

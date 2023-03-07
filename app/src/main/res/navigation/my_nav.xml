@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_listFragment_to_listSpecialty"
             app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listFragment_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
+        <action
+            android:id="@+id/action_listFragment_to_listEnrollement2"
+            app:destination="@id/listEnrollement" />
     </fragment>
     <fragment
         android:id="@+id/addFragment"
@@ -79,6 +85,9 @@
         <action
             android:id="@+id/action_listLevel_to_listSpecialty3"
             app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listLevel_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
     </fragment>
     <fragment
         android:id="@+id/addLevel"
@@ -124,6 +133,9 @@
         <action
             android:id="@+id/action_listDepartment_to_listSpecialty"
             app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listDepartment_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
     </fragment>
     <fragment
         android:id="@+id/addDepartment"
@@ -169,6 +181,9 @@
         <action
             android:id="@+id/action_listSpecialty_to_updateSpecialty"
             app:destination="@id/updateSpecialty" />
+        <action
+            android:id="@+id/action_listSpecialty_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
     </fragment>
     <fragment
         android:id="@+id/addSpecialty"
@@ -187,5 +202,56 @@
         <action
             android:id="@+id/action_updateSpecialty_to_listSpecialty"
             app:destination="@id/listSpecialty" />
+        <argument
+            android:name="currentSpecialty"
+            app:argType="cm.sigeris.roomdatabase.model.Specialty" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEnrollement"
+        android:name="cm.sigeris.roomdatabase.fragments.enrollement.AddEnrollement"
+        android:label="fragment_add_enrollement"
+        tools:layout="@layout/fragment_add_enrollement" >
+        <action
+            android:id="@+id/action_addEnrollement_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
+    </fragment>
+    <fragment
+        android:id="@+id/listEnrollement"
+        android:name="cm.sigeris.roomdatabase.fragments.enrollement.ListEnrollement"
+        android:label="fragment_list_enrollement"
+        tools:layout="@layout/fragment_list_enrollement" >
+        <action
+            android:id="@+id/action_listEnrollement_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listEnrollement_to_updateEnrollement"
+            app:destination="@id/updateEnrollement" />
+        <action
+            android:id="@+id/action_listEnrollement_to_addEnrollement"
+            app:destination="@id/addEnrollement" />
+        <action
+            android:id="@+id/action_listEnrollement_to_listFragment2"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_listEnrollement_to_listSpecialty"
+            app:destination="@id/listSpecialty" />
+        <action
+            android:id="@+id/action_listEnrollement_to_listDepartment"
+            app:destination="@id/listDepartment" />
+        <action
+            android:id="@+id/action_listEnrollement_to_listLevel"
+            app:destination="@id/listLevel" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateEnrollement"
+        android:name="cm.sigeris.roomdatabase.fragments.enrollement.UpdateEnrollement"
+        android:label="fragment_update_enrollement"
+        tools:layout="@layout/fragment_update_enrollement" >
+        <action
+            android:id="@+id/action_updateEnrollement_to_listEnrollement"
+            app:destination="@id/listEnrollement" />
+        <argument
+            android:name="currentEnrollement"
+            app:argType="cm.sigeris.roomdatabase.model.Enrollement" />
     </fragment>
 </navigation>

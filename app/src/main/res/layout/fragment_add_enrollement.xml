@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".fragments.specialty.addSpecialty">
-
+    tools:context=".fragments.enrollement.AddEnrollement">
 
 
     <TextView
@@ -17,7 +16,27 @@
         android:textAlignment="center"
         android:textStyle="bold"
         android:textColor="@color/teal_700"
-        android:text="Add Specialty" />
+        android:text=" Add Enrollement" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:padding="12dp"
+        android:layout_marginStart="100dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtYearEnrollement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="Academic year"
+            android:inputType="number"  />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,12 +48,58 @@
 
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteDepartment"
+            android:id="@+id/autoCompleteStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:ems="10"
-            android:hint="Select Department"
+            android:hint="Select Student"
+            android:completionThreshold="1"
+            android:completionHint="Select Department"
+            android:gravity="center"
+            android:inputType="text"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:weightSum="4"
+        android:orientation="horizontal">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteSpecialty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:hint="Select Specialty"
+            android:completionThreshold="1"
+            android:completionHint="Select Department"
+            android:gravity="center"
+            android:inputType="text"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:weightSum="4"
+        android:orientation="horizontal">
+
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:hint="Select Level"
             android:completionThreshold="1"
             android:completionHint="Select Department"
             android:gravity="center"
@@ -43,61 +108,12 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:padding="12dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/txtFname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:text="Name:" />
-        <EditText
-            android:id="@+id/edtNameSpecialty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:hint="Enter Specialty Name"
-            android:inputType="textPersonName"  />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_height="wrap_content"
-        android:weightSum="4"
-        android:padding="12dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:text="Description:" />
-        <EditText
-            android:id="@+id/edtDescSpecialty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:hint="Enter Specialty Description"
-            android:inputType="textPersonName" />
-    </LinearLayout>
-
-
     <Button
-        android:id="@+id/btnInsertSpecialty"
+        android:id="@+id/btnAddEnrollement"
         android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ADD specialty" />
+        android:text="Enroll" />
 
 
 

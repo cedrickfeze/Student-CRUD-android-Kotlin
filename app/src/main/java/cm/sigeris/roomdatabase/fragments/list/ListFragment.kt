@@ -66,6 +66,7 @@ class ListFragment : Fragment() {
 
             R.id.enrollement ->{
                 Toast.makeText(requireContext(), "enrollement pressed", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_listFragment_to_listEnrollement)
                 return true
             }
 

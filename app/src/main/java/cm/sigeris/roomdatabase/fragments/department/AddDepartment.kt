@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import cm.sigeris.roomdatabase.R
 import cm.sigeris.roomdatabase.model.Department
 import cm.sigeris.roomdatabase.model.Level
+import cm.sigeris.roomdatabase.model.User
 import cm.sigeris.roomdatabase.viewmodel.DepartmentViewModel
 import cm.sigeris.roomdatabase.viewmodel.LevelViewModel
 import kotlinx.android.synthetic.main.fragment_add_department.*
@@ -37,6 +38,16 @@ class AddDepartment : Fragment() {
         mDepartmentViewModel = ViewModelProvider(this).get(DepartmentViewModel::class.java)
         view.btnInsertDepartment.setOnClickListener {
             insertDepartmentToDatabase()
+
+//            val listDepartment = ArrayList<Department>()
+//            listDepartment.add(Department(0, "engineering"))
+//            listDepartment.add(Department(0, "accounting"))
+//            listDepartment.add(Department(0, "medecin"))
+//            listDepartment.add(Department(0, "forestory"))
+//
+//            for (i in listDepartment){
+//                mDepartmentViewModel.addDepartment(i.copy())
+//            }
         }
         return view
     }

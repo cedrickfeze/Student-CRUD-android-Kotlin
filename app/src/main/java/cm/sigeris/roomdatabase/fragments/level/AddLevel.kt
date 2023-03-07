@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cm.sigeris.roomdatabase.R
+import cm.sigeris.roomdatabase.model.Department
 import cm.sigeris.roomdatabase.model.Level
 import cm.sigeris.roomdatabase.viewmodel.LevelViewModel
 import kotlinx.android.synthetic.main.fragment_add_level.*
@@ -32,6 +33,19 @@ class AddLevel : Fragment() {
         mLevelViewModel = ViewModelProvider(this).get(LevelViewModel::class.java)
         view.btnInsertlevel.setOnClickListener {
             insertLevelToDatabase()
+            val listLevel = ArrayList<Level>()
+            listLevel.add(Level(0, "HND 1"))
+            listLevel.add(Level(0, "HND 2"))
+            listLevel.add(Level(0, "Bechelor"))
+            listLevel.add(Level(0, "Masters 1"))
+            listLevel.add(Level(0, "Masters 2"))
+            listLevel.add(Level(0, "PHD 1"))
+            listLevel.add(Level(0, "PHD"))
+
+
+            for (i in listLevel){
+                mLevelViewModel.addLevel(i.copy())
+            }
         }
         return view
     }

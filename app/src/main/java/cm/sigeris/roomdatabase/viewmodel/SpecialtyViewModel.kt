@@ -10,7 +10,7 @@ import cm.sigeris.roomdatabase.repository.SpecialtyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SpecialtyViewModel(application: Application): AndroidViewModel(application) {
+class SpecialtyViewModel (application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Specialty>>
     private val repository: SpecialtyRepository
@@ -39,7 +39,7 @@ class SpecialtyViewModel(application: Application): AndroidViewModel(application
         }
     }
 
-    fun deleteAllSpecialtys(){
+    fun deleteAllSpecialties(){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllSpecialties()
         }
